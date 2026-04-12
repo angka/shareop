@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShareOp — Jadwal Operasi</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-header">
+    <h1>ShareOp</h1>
+    <p>Jadwal Operasi & Telegram Bot</p>
+  </div>
+
+  <div class="toolbar">
+    <div class="date-picker-group">
+      <label for="tanggal-input">Tanggal:</label>
+      <input type="date" id="tanggal-input">
+    </div>
+    <button id="btn-tambah-kamar" class="btn btn-secondary">+ Tambah Kamar</button>
+    <button id="btn-hapus-jadwal" class="btn btn-danger-outline" title="Hapus seluruh jadwal">🗑 Hapus Jadwal</button>
+  </div>
+
+  <div id="rooms-container" class="rooms-container">
+    <div class="empty-state" id="empty-state">
+      <p>Pilih tanggal di atas, lalu klik <strong>+ Tambah Kamar</strong> untuk memulai.</p>
+    </div>
+  </div>
+
+  <div class="action-buttons">
+    <button id="btn-simpan" class="btn btn-primary">💾 Simpan</button>
+    <button id="btn-preview" class="btn btn-secondary">👁 Preview Pesan</button>
+    <button id="btn-kirim" class="btn btn-telegram">📲 Kirim ke Telegram</button>
+  </div>
+
+  <!-- Preview Modal -->
+  <div id="preview-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Preview Pesan</h2>
+        <button id="close-preview" class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <pre id="preview-text"></pre>
+      </div>
+      <div class="modal-footer">
+        <button id="copy-preview" class="btn btn-secondary">📋 Salin</button>
+        <button id="close-preview-2" class="btn btn-primary">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Room Modal -->
+  <div id="add-room-modal" class="modal" style="display:none;">
+    <div class="modal-content modal-sm">
+      <div class="modal-header">
+        <h2>Tambah Kamar Operasi</h2>
+        <button class="modal-close" id="close-add-room">&times;</button>
+      </div>
+      <div class="modal-body">
+        <label for="nama-kamar-input">Nama Kamar:</label>
+        <input type="text" id="nama-kamar-input" placeholder="Contoh: PJT 1.1" autocomplete="off">
+      </div>
+      <div class="modal-footer">
+        <button id="cancel-add-room" class="btn btn-secondary">Batal</button>
+        <button id="confirm-add-room" class="btn btn-primary">Tambah</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirm Modal -->
+  <div id="confirm-modal" class="modal" style="display:none;">
+    <div class="modal-content modal-sm">
+      <div class="modal-header">
+        <h2>Konfirmasi</h2>
+        <button class="modal-close" id="close-confirm">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p id="confirm-message">Yakin?</p>
+      </div>
+      <div class="modal-footer">
+        <button id="cancel-confirm" class="btn btn-secondary">Batal</button>
+        <button id="ok-confirm" class="btn btn-danger">Ya, Hapus</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Move Entry Modal -->
+  <div id="move-entry-modal" class="modal" style="display:none;">
+    <div class="modal-content modal-sm">
+      <div class="modal-header">
+        <h2>Pindahkan ke Kamar</h2>
+        <button class="modal-close" id="close-move-entry">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p id="move-entry-hint" style="margin-bottom:10px;color:var(--text-muted);font-size:0.85rem;">Pilih kamar tujuan:</p>
+        <div id="move-room-list"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="cancel-move-entry">Batal</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast" style="display:none;"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
