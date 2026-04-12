@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Database (auto-generated)
+shareop.db
+
+# Environment (contains secrets)
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Lock files (optional — keep if you want exact deps)
+# package-lock.json
